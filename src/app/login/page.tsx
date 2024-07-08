@@ -10,31 +10,34 @@ import {
   Input,
   Text,
   CardFooter,
+  Heading,
 } from "@chakra-ui/react";
 
 import { loginProcess } from "@/api/auth";
+import { setCookies } from "@/actions/cookies";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const router = useRouter();
 
   const handleLogin = async () => {
     try {
-      console.log(email, "<>", password);
       const resLogin = await loginProcess(email, password);
-
-      //localStorage.setItem("authToken", resLogin.data.token);
-      //cookies().set("authToken", resLogin.data.token);
+      setCookies("authToken", resLogin.data.token);
+      router.push("/");
     } catch (err) {
-      alert(JSON.stringify(err));
+      console.log("err => ", err);
     }
   };
 
   return (
     <div>
-      <Text as={"h1"}> Login </Text>
+      <Heading as={"h3"}> Login </Heading>
       <hr></hr>
-      <Center>
+
+      <Center marginTop={40}>
         <Grid>
           <Card>
             <CardBody>

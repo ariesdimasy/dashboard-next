@@ -1,35 +1,50 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Button, Text, UnorderedList, ListItem } from "@chakra-ui/react";
-import { logoutProcess } from "@/api/auth";
+import {
+  Box,
+  Flex,
+  Heading,
+  UnorderedList,
+  ListItem,
+  useToast,
+  Button,
+  Link,
+} from "@chakra-ui/react";
+
 import { getAllPosts } from "@/api/post";
 
 export default function Post() {
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    handleGetPosts();
-  }, []);
+  const toast = useToast();
 
   const handleGetPosts = async () => {
     const posts = await getAllPosts();
-
     setPosts(posts.data);
   };
 
-  const handleLogout = () => {
-    logoutProcess();
-  };
+  useEffect(() => {
+    async function getPosts() {
+      handleGetPosts();
+    }
+    getPosts();
+  }, []);
 
   return (
     <div>
-      <Text as={"h1"}> Post </Text>
-      <Button onClick={() => handleLogout()}> Logout </Button>
+      <Flex>
+        <Box w={"95%"}>
+          <Heading as={"h3"}> Post </Heading>
+        </Box>
+        <Box>
+          <Link href="/post/add"> Add Post </Link>
+        </Box>
+      </Flex>
       <hr></hr>
 
       <UnorderedList>
-        {posts?.data?.map((item: any, index: number) => (
+        {posts?.map((item: any, index: number) => (
           <ListItem key={index}>{item.title}</ListItem>
         ))}
       </UnorderedList>

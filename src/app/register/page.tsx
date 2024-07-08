@@ -3,23 +3,43 @@
 import { useState } from "react";
 
 import {
+  Button,
+  Heading,
   Center,
   Grid,
   Card,
+  CardFooter,
   CardBody,
   FormControl,
   Input,
 } from "@chakra-ui/react";
 
 export default function Register() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+
+  const handleRegister = () => {};
 
   return (
     <div>
-      <Center>
+      <Heading as={"h3"}>Register</Heading>
+      <hr />
+      <Center marginTop="40">
         <Grid>
           <Card>
             <CardBody>
+              <FormControl marginBottom={5}>
+                <label> Name </label>
+                <Input
+                  type="text"
+                  name="text"
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                ></Input>
+              </FormControl>
               <FormControl marginBottom={5}>
                 <label> Email </label>
                 <Input
@@ -30,7 +50,7 @@ export default function Register() {
                   onChange={(e) => setEmail(e.target.value)}
                 ></Input>
               </FormControl>
-              <FormControl>
+              <FormControl marginBottom={5}>
                 <label> Password </label>
                 <Input
                   type="password"
@@ -40,9 +60,19 @@ export default function Register() {
                   onChange={(e) => setPassword(e.target.value)}
                 ></Input>
               </FormControl>
+              <FormControl marginBottom={5}>
+                <label> Password Confirm </label>
+                <Input
+                  type="password"
+                  name="password_confirm"
+                  id="password_confirm"
+                  value={passwordConfirm}
+                  onChange={(e) => setPasswordConfirm(e.target.value)}
+                ></Input>
+              </FormControl>
             </CardBody>
             <CardFooter>
-              <Button onClick={() => handleLogin()}> Login </Button>
+              <Button onClick={() => handleRegister()}> Register </Button>
             </CardFooter>
           </Card>
         </Grid>

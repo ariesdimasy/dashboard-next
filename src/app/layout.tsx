@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 import Navbar from "../components/Navbar";
+import { Card, CardBody, Flex, Box } from "@chakra-ui/react";
 import "./globals.css";
+import Sidebar from "@/components/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,8 +22,17 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <Navbar></Navbar>
-          {children}
+          <Flex>
+            <Sidebar />
+            <Box w={"85%"}>
+              <Navbar></Navbar>
+              <Box bgColor={"gray.100"} w={"100"} h={"100vh"} padding={5}>
+                <Card h={"100%"}>
+                  <CardBody>{children}</CardBody>
+                </Card>
+              </Box>
+            </Box>
+          </Flex>
         </Providers>
       </body>
     </html>

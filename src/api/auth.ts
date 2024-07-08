@@ -1,8 +1,6 @@
-"use server"
-import { cookies } from 'next/headers'
+"use client"
 import axios from "axios"
-import { redirect } from 'next/navigation'
-
+import { getCookie } from "../actions/cookies"
 const base_url_api = "http://localhost:5670"
 
 export async function loginProcess(email: string, password: string) {
@@ -12,18 +10,26 @@ export async function loginProcess(email: string, password: string) {
         password: password
     })
 
-    console.log(res)
-
-    cookies().set("authToken", res.data.token)
-    redirect("/post")
-}
-
-export async function logoutProcess() {
-    cookies().delete("authToken")
-    redirect("/login")
+    return res
 }
 
 export async function registerProcess(data: any) {
+    const res = await axios.post(base_url_api + "/auth/register", {
+        name: data.name,
+        email: data.email,
+        password: data.password
+    })
 
+    return res
+}
 
+export async function me() {
+    const authToken = await getCookie("authToken")
+    const res = await axios.get(base_url_api + "/auth/me", {
+        headers: {
+            Authorization: "Bearer " + authToken
+        }
+    })
+
+    return res
 }
