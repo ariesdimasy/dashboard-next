@@ -1,6 +1,7 @@
 "use client";
 
 import { deleteCookie } from "@/actions/cookies";
+import { useRouter } from "next/navigation";
 import {
   Box,
   Menu,
@@ -12,7 +13,6 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 
-import { useRouter } from "next/navigation";
 import ProfileDropdown from "./ProfileDropdown";
 
 export default function Navbar() {
@@ -45,6 +45,7 @@ export default function Navbar() {
               onClick={() => {
                 async function deleteSession() {
                   await deleteCookie("authToken");
+                  router.push("/");
                 }
                 deleteSession();
               }}

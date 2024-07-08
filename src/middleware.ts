@@ -5,8 +5,8 @@ import * as jose from 'jose'
 import { cookies } from 'next/headers'
 
 // 1. Specify protected and public routes
-const protectedRoutes = ['/product']
-const publicRoutes = ['/login', '/', '/post']
+const protectedRoutes = ['/product', '/post']
+const publicRoutes = ['/login', '/register']
 
 export default async function middleware(req: NextRequest) {
     try {
@@ -32,6 +32,7 @@ export default async function middleware(req: NextRequest) {
         return NextResponse.next()
     } catch (err) {
 
+        // return NextResponse.redirect(new URL('/login', req.nextUrl))
         return NextResponse.next()
 
     }

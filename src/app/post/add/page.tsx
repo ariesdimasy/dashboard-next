@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import {
   Box,
   Button,
-  Text,
+  Divider,
   Container,
   Card,
   CardBody,
@@ -27,18 +27,16 @@ export default function PostAdd() {
   const router = useRouter();
   const toast = useToast();
 
-  const handleCreatePost = async () => {
-    const res = await createPost({
-      title: title,
-      body: body,
-    });
-
-    if (res.status === 401) {
-      toast({
-        title: "401 Unauthorized",
-        description: "you are not authorized doing this action",
+  const handleCreatePost = () => {
+    async function createPostAgain() {
+      const res = await createPost({
+        title: title,
+        body: body,
       });
     }
+    createPostAgain();
+
+    router.push("/post");
   };
 
   return (
@@ -68,6 +66,11 @@ export default function PostAdd() {
                 ></Textarea>
               </FormControl>
               <FormControl>
+                <FormLabel> Image </FormLabel>
+                <Input type="file" name="image" onChange={() => {}} />
+              </FormControl>
+              <Divider />
+              <FormControl margin={"10px 0 0 0"}>
                 <Button color={"blue.500"} onClick={() => handleCreatePost()}>
                   Submit{" "}
                 </Button>

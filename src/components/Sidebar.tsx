@@ -37,8 +37,8 @@ export default function Sidebar() {
             </Link>
           </ListItem>
           <ListItem padding={3}>
-            <Link href={"/project"} className="">
-              Project
+            <Link href={"/sample"} className="">
+              Sample
             </Link>
           </ListItem>
           <ListItem padding={3}>

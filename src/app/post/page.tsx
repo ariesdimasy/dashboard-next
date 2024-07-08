@@ -43,7 +43,7 @@ export default function Post() {
       </Flex>
       <hr></hr>
 
-      <UnorderedList>
+      <UnorderedList paddingTop={10}>
         {posts?.map((item: any, index: number) => (
           <ListItem key={index}>{item.title}</ListItem>
         ))}

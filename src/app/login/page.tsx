@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 
 import { loginProcess } from "@/api/auth";
-import { setCookies } from "@/actions/cookies";
+import { deleteCookie, setCookies } from "@/actions/cookies";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
@@ -25,7 +25,8 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       const resLogin = await loginProcess(email, password);
-      setCookies("authToken", resLogin.data.token);
+      await deleteCookie("authToken");
+      await setCookies("authToken", resLogin.data.token);
       router.push("/");
     } catch (err) {
       console.log("err => ", err);

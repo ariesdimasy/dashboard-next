@@ -25,11 +25,15 @@ export async function registerProcess(data: any) {
 
 export async function me() {
     const authToken = await getCookie("authToken")
-    const res = await axios.get(base_url_api + "/auth/me", {
-        headers: {
-            Authorization: "Bearer " + authToken
-        }
-    })
+    if (authToken) {
+        const res = await axios.get(base_url_api + "/auth/me", {
+            headers: {
+                Authorization: "Bearer " + authToken
+            }
+        })
 
-    return res
+        return res
+    }
+    return {}
+
 }
