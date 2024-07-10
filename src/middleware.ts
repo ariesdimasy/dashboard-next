@@ -1,6 +1,7 @@
 "use server"
 import { NextRequest, NextResponse } from 'next/server'
 import * as jose from 'jose'
+import * as jwt from 'jsonwebtoken'
 // import { decrypt } from '@/app/lib/session'
 import { cookies } from 'next/headers'
 
@@ -19,13 +20,12 @@ export default async function middleware(req: NextRequest) {
 
         let session = null
         if (authToken) {
-            session = await jose.jwtVerify(authToken, new TextEncoder().encode("mySecretAcademia"))
+            session = await jwt.verify(authToken, "mySecretAcademia")
 
         }
 
         // 5. Redirect to /login if the user is not authenticated
-        if (isProtectedRoute && !session?.payload?.email) {
-
+        if (isProtectedRoute && !session) {
             return NextResponse.redirect(new URL('/login', req.nextUrl))
         }
 

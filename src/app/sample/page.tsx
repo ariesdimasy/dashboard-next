@@ -49,7 +49,7 @@ export default function Sample() {
         </CardBody>
       </Card>
       <Image
-        src={"/images/IMG1720449982541.jpg"}
+        src={"./images/IMG1720449982541.jpg"}
         width={200}
         height={200}
         alt="ini gambar"

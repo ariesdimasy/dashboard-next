@@ -37,7 +37,14 @@ export default function Product() {
           {products?.data?.map((item: any, index: number) => (
             <Tr key={index}>
               <Td>{item.id}</Td>
-              <Td></Td>
+              <Td>
+                <img
+                  src={"http://localhost:8000/images/" + item.image}
+                  width={100}
+                  height={200}
+                  alt="the fool"
+                ></img>
+              </Td>
               <Td>{item.name}</Td>
               <Td>{item.price}</Td>
               <Td>{item.stock}</Td>

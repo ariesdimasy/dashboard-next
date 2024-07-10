@@ -14,13 +14,27 @@ import {
   Input,
 } from "@chakra-ui/react";
 
+import { registerProcess } from "@/api/auth";
+
+import { useRouter } from "next/navigation";
+
 export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
-  const handleRegister = () => {};
+  const router = useRouter();
+
+  const handleRegister = () => {
+    registerProcess({
+      name: name,
+      email: email,
+      password: password,
+    });
+
+    router.push("/");
+  };
 
   return (
     <div>

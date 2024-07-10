@@ -1,6 +1,6 @@
 "use client"
 import axios from "axios"
-const base_url_api = "http://localhost:8000"
+const base_url_api = process.env.base_url_api
 export async function uploadImage(data: any) {
 
     const formData = new FormData()

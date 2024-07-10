@@ -10,5 +10,11 @@ export default function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div>{children}</div>;
+  return (
+    <div>
+      <div> env next : {process.env.base_url_api} </div>
+      <div> env local : {process.env.API_URL} </div>
+      <div>{children}</div>
+    </div>
+  );
 }

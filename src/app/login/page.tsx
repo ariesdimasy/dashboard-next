@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+
+import React from "react";
 import {
   Button,
   Card,
@@ -18,8 +19,8 @@ import { deleteCookie, setCookies } from "@/actions/cookies";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = React.useState<string>("");
+  const [password, setPassword] = React.useState<string>("");
   const router = useRouter();
 
   const handleLogin = async () => {
