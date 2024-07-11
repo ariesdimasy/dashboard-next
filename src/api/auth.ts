@@ -3,6 +3,12 @@ import axios from "axios"
 import { getCookie } from "../actions/cookies"
 const base_url_api = "http://localhost:5670"
 
+interface IRegisterRequest {
+    name: string,
+    email: string,
+    password: string
+}
+
 export async function loginProcess(email: string, password: string) {
 
     const res = await axios.post(base_url_api + "/auth/login", {
@@ -13,7 +19,7 @@ export async function loginProcess(email: string, password: string) {
     return res
 }
 
-export async function registerProcess(data: any) {
+export async function registerProcess(data: IRegisterRequest) {
     const res = await axios.post(base_url_api + "/auth/register", {
         name: data.name,
         email: data.email,
