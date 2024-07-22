@@ -1,3 +1,3 @@
-export default IUserDeleteConfirmProps {
-
-}
+export default interface IUserDeleteConfirmProps {
+    name: string;
+};

@@ -2,7 +2,10 @@
 import { useState, useEffect } from "react";
 import { MenuList, MenuItem } from "@chakra-ui/react";
 import { me } from "@/api/auth";
-export default function ProfileDropdown() {
+
+interface IProfileDropdownProps {}
+
+export default function ProfileDropdown(props: IProfileDropdownProps) {
   const [dataToken, setDataToken] = useState<any>(false);
 
   const handleGetUserData = () => {
@@ -16,7 +19,6 @@ export default function ProfileDropdown() {
   useEffect(() => {
     handleGetUserData();
   }, []);
-
   return (
     <MenuList color={"black"}>
       <MenuItem>Name : {dataToken?.data?.name}</MenuItem>

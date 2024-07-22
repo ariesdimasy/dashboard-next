@@ -17,6 +17,7 @@ import ProfileDropdown from "./ProfileDropdown";
 
 export default function Navbar() {
   const router = useRouter();
+
   return (
     <Box
       bgColor={"blue.400"}
